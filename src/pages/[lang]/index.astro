@@ -3,34 +3,35 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { publicPosts,publicProjects } from '../../lib/content';
-import { tr,localized,withBase } from '../../lib/i18n';
+import { tr,localized,withBase, media } from '../../lib/i18n';
 import type {Lang} from '../../lib/i18n';
 import site from '../../data/site.json';
+import homeData from '../../data/home.json';
 export function getStaticPaths(){return [{params:{lang:'fr'}},{params:{lang:'en'}}];}
 const lang=Astro.params.lang as Lang;
 const t=tr(lang);
+const home=homeData[lang];
 const posts=(await publicPosts()).slice(0,3);
 const projects=(await publicProjects()).filter(p=>p.data.featured).slice(0,3);
 const cv=lang==='fr'?site.cvFr:site.cvEn;
 const cvLink=cv ? (cv.startsWith('http')?cv:withBase(cv)) : '';
 ---
-<BaseLayout lang={lang} description={t.heroIntro}>
+<BaseLayout lang={lang} description={home.seoDescription || home.heroIntro}>
   <section class="hero"><div class="container hero-grid">
-    <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span>{t.eyebrow}</p><h1>{t.hero}</h1><p class="hero-summary">{t.heroIntro}</p><div class="hero-actions">
+    <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span>{home.eyebrow}</p><h1>{home.heroTitle}</h1><p class="hero-summary">{home.heroIntro}</p><div class="hero-actions">
       {cvLink ? <a href={cvLink} class="button button-primary" download={cvLink.startsWith('http')?undefined:true}>↓ {t.cv}</a> : <span class="button button-disabled" title={t.cvSoon}>↓ {t.cvSoon}</span>}
-      <a href={localized(lang,'projects/')} class="button button-outline">{t.explore} ↗</a></div><div class="hero-micro"><span>INTERNATIONAL ECONOMICS</span><span>ECONOMETRICS & DATA</span><span>ENERGY MANAGEMENT</span></div>
+      <a href={localized(lang,'projects/')} class="button button-outline">{t.explore} ↗</a></div><div class="hero-micro">{home.heroMicroItems.map(item=><span>{item}</span>)}</div>
     </div>
-    <div class="hero-photo-wrap"><div class="photo-overline">MOHAMED I CONDE / PROFILE</div><img class="hero-photo" src={withBase('/images/portrait.webp')} alt={lang==='fr'?'Portrait de Mohamed I CONDE':'Portrait of Mohamed I CONDE'} fetchpriority="high"/><div class="photo-caption"><span>ECONOMICS × RESEARCH × DATA</span><span>↗</span></div></div>
+    <div class="hero-photo-wrap"><div class="photo-overline">{home.photoOverline}</div><img class="hero-photo" src={media(site.portrait) || withBase('/images/portrait.webp')} alt={lang==='fr'?`Portrait de ${site.displayName}`:`Portrait of ${site.displayName}`} fetchpriority="high"/><div class="photo-caption"><span>{home.photoCaption}</span><span>↗</span></div></div>
   </div></section>
-  <section class="section"><div class="container split-about"><div><p class="overline">01 / {t.about.toUpperCase()}</p><h2 class="section-heading">{t.about}</h2></div><div><p class="large-para">{t.aboutBody}</p><a class="text-arrow" href={`mailto:${site.email}`}>{t.mail} ↗</a></div></div></section>
-  <section class="section section-soft"><div class="container"><div class="section-head"><div><p class="overline">02 / EDUCATION</p><h2 class="section-heading">{t.education}</h2></div><p class="section-aside">{t.educationText}</p></div><div class="edu-grid">
-    <article class="edu-item"><span class="edu-index">01</span><h3>{t.master}</h3><p>{t.masterSchool}</p></article>
-    <article class="edu-item"><span class="edu-index">02</span><h3>{t.mba}</h3><p>{t.mbaSchool}</p></article>
-    <article class="edu-item"><span class="edu-index">03</span><h3>{t.licence}</h3><p>{t.licenceSchool}</p></article>
+  <section class="section"><div class="container split-about"><div><p class="overline">01 / {home.aboutTitle.toUpperCase()}</p><h2 class="section-heading">{home.aboutTitle}</h2></div><div><p class="large-para">{home.aboutBody}</p><a class="text-arrow" href={`mailto:${site.email}`}>{t.mail} ↗</a></div></div></section>
+  <section class="section section-soft"><div class="container"><div class="section-head"><div><p class="overline">02 / {home.educationOverline}</p><h2 class="section-heading">{home.educationTitle}</h2></div><p class="section-aside">{home.educationIntro}</p></div><div class="edu-grid">
+    {home.educationItems.map((item,index)=><article class="edu-item"><span class="edu-index">{String(index+1).padStart(2,'0')}</span><h3>{item.degree}</h3><p>{item.institution}</p>{item.details && <p class="education-note">{item.details}</p>}</article>)}
   </div></div></section>
-  <section class="section"><div class="container interest-grid"><div><p class="overline">03 / RESEARCH</p><h2 class="section-heading">{t.research}</h2></div><div class="interest-tags"><span>International Macroeconomics</span><span>Monetary Policy</span><span>Applied Econometrics</span><span>Data Science & AI</span><span>Energy Economics</span><span>Emerging Markets</span></div></div></section>
-  <section class="section section-line"><div class="container"><div class="section-head"><div><p class="overline">04 / TOOLKIT</p><h2 class="section-heading">{t.skills}</h2></div><p class="section-aside">{t.skillsSub}</p></div><div class="toolkit"><span>Python</span><span>R / RStudio</span><span>EViews</span><span>ARDL & NARDL</span><span>Time Series</span><span>Data Analysis</span></div></div></section>
-  <section class="section section-soft"><div class="container engagement-grid"><div><p class="overline">05 / EXPERIENCE</p><h2 class="section-heading">{t.experiences}</h2><p>{t.expBody}</p></div><div class="engagement-photo"><img src={withBase('/images/speaking.webp')} alt={lang==='fr'?'Intervention de Mohamed I CONDE lors d’un événement':'Mohamed I CONDE speaking at an event'} loading="lazy"/></div></div></section>
-  <section class="section"><div class="container"><div class="section-head"><div><p class="overline">06 / JOURNAL</p><h2 class="section-heading">{t.articlesLatest}</h2></div><a href={localized(lang,'blog/')} class="text-arrow">{t.viewAll} ↗</a></div>{posts.length ? <div class="cards-grid">{posts.map(p=><PostCard post={p} lang={lang}/>)}</div> : <div class="empty-state">{t.noPosts} <a href={localized(lang,'blog/')}>{t.blog} ↗</a></div>}</div></section>
-  <section class="section section-soft"><div class="container"><div class="section-head"><div><p class="overline">07 / PROJECTS</p><h2 class="section-heading">{t.projectLatest}</h2></div><a href={localized(lang,'projects/')} class="text-arrow">{t.viewProjects} ↗</a></div>{projects.length ? <div class="cards-grid">{projects.map(p=><ProjectCard project={p} lang={lang}/>)}</div> : <div class="empty-state">{t.noProjects}</div>}</div></section>
+  <section class="section"><div class="container interest-grid"><div><p class="overline">03 / {home.researchOverline}</p><h2 class="section-heading">{home.researchTitle}</h2></div><div class="interest-tags">{home.researchItems.map(item=><span>{item}</span>)}</div></div></section>
+  <section class="section section-line"><div class="container"><div class="section-head"><div><p class="overline">04 / {home.skillsOverline}</p><h2 class="section-heading">{home.skillsTitle}</h2></div><p class="section-aside">{home.skillsIntro}</p></div><div class="toolkit">{home.skillItems.map(item=><span>{item}</span>)}</div></div></section>
+  <section class="section section-soft"><div class="container engagement-grid"><div><p class="overline">05 / {home.experienceOverline}</p><h2 class="section-heading">{home.experienceTitle}</h2><p>{home.experienceIntro}</p>
+      {home.experienceItems.length>0 && <div class="experience-items">{home.experienceItems.map(item=><div class="experience-entry"><strong>{item.role}</strong><span>{item.organization}{item.period ? ` · ${item.period}` : ''}</span>{item.description && <p>{item.description}</p>}</div>)}</div>}</div><div class="engagement-photo"><img src={media(site.speaking) || withBase('/images/speaking.webp')} alt={lang==='fr'?`Intervention de ${site.displayName} lors d’un événement`:`${site.displayName} speaking at an event`} loading="lazy"/></div></div></section>
+  <section class="section"><div class="container"><div class="section-head"><div><p class="overline">06 / {home.latestPostsOverline}</p><h2 class="section-heading">{home.latestPostsTitle}</h2></div><a href={localized(lang,'blog/')} class="text-arrow">{t.viewAll} ↗</a></div>{posts.length ? <div class="cards-grid">{posts.map(p=><PostCard post={p} lang={lang}/>)}</div> : <div class="empty-state">{t.noPosts} <a href={localized(lang,'blog/')}>{t.blog} ↗</a></div>}</div></section>
+  <section class="section section-soft"><div class="container"><div class="section-head"><div><p class="overline">07 / {home.latestProjectsOverline}</p><h2 class="section-heading">{home.latestProjectsTitle}</h2></div><a href={localized(lang,'projects/')} class="text-arrow">{t.viewProjects} ↗</a></div>{projects.length ? <div class="cards-grid">{projects.map(p=><ProjectCard project={p} lang={lang}/>)}</div> : <div class="empty-state">{t.noProjects}</div>}</div></section>
 </BaseLayout>

@@ -12,7 +12,7 @@ const switchHref = section==='blog' ? localized(lang==='fr'?'en':'fr','blog/') :
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="header">
   <div class="container nav-container">
-    <a class="brand" href={localized(lang)} aria-label={`${site.displayName} home`}><span class="brand-icon">MC<span>.</span></span><span class="brand-copy">MOHAMED <strong>I CONDE</strong><small>ECONOMICS · RESEARCH · DATA</small></span></a>
+    <a class="brand" href={localized(lang)} aria-label={`${site.displayName} home`}><span class="brand-icon">{site.monogram}<span>.</span></span><span class="brand-copy">{site.brandPrimary} <strong>{site.brandEmphasis}</strong><small>{lang==='fr'?site.brandTagFr:site.brandTagEn}</small></span></a>
     <nav class="navigation" id="navigation" aria-label="Main navigation">
       <a href={localized(lang)} aria-current={section==='home'?'page':undefined}>{t.home}</a>
       <a href={localized(lang,'blog/')} aria-current={section==='blog'?'page':undefined}>{t.blog}</a>

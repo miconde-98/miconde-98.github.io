@@ -4,13 +4,15 @@ import PostCard from '../../../components/PostCard.astro';
 import {publicPosts} from '../../../lib/content';
 import { tr,localized } from '../../../lib/i18n';
 import type {Lang} from '../../../lib/i18n';
+import blogData from '../../../data/blog-page.json';
 export function getStaticPaths(){return [{params:{lang:'fr'}},{params:{lang:'en'}}];}
 const lang=Astro.params.lang as Lang;
 const t=tr(lang);
+const page=blogData[lang];
 const posts=await publicPosts();
 ---
-<BaseLayout lang={lang} title={t.blog} description={t.blogIntro}>
-  <section class="page-head container"><p class="overline">THE RESEARCH NOTEBOOK / JOURNAL</p><h1>{t.blog}</h1><p>{t.blogIntro}</p></section>
+<BaseLayout lang={lang} title={page.title} description={page.seoDescription || page.intro}>
+  <section class="page-head container"><p class="overline">{page.kicker}</p><h1>{page.title}</h1><p>{page.intro}</p></section>
   <section class="container posts-section">
     <div class="filter-toolbar" aria-label="Article filters">
       <label class="search-field"><span aria-hidden="true">⌕</span><input type="search" id="post-search" placeholder={t.search} aria-label={t.search}/></label>
@@ -21,7 +23,7 @@ const posts=await publicPosts();
       <select id="post-language" aria-label={t.allLangs}><option value="all">{t.allLangs}</option><option value="fr">Français</option><option value="en">English</option></select>
     </div>
     {posts.length ? <><div class="cards-grid" id="posts-grid">{posts.map(p=><PostCard post={p} lang={lang}/>)}</div><p class="empty-state" id="posts-empty" hidden>{t.noMatches}</p></> : <div class="empty-state">{t.noPosts}</div>}
-    <div class="blog-rss">RSS ↗ <a href={localized(lang,'feed.xml')}>{lang==='fr'?'S’abonner au flux':'Subscribe to feed'}</a></div>
+    <div class="blog-rss">RSS ↗ <a href={localized(lang,'feed.xml')}>{page.rssLabel}</a></div>
   </section>
 </BaseLayout>
 <script>

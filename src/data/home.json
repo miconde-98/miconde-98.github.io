@@ -1,0 +1,130 @@
+{
+  "fr": {
+    "eyebrow": "ÉCONOMIE · RECHERCHE · TECHNOLOGIE",
+    "heroTitle": "Explorer l’économie. Comprendre les données. Produire des connaissances.",
+    "heroIntro": "Économie internationale, économétrie appliquée, management de l’énergie et science des données : un espace pour partager mes recherches, mes analyses et mes projets.",
+    "aboutTitle": "À propos",
+    "aboutBody": "Je suis Mohamed I CONDE, étudiant en économie internationale et engagé dans une formation en management du pétrole, du gaz et de l’énergie. Mes intérêts se situent à l’intersection de la macroéconomie internationale, de la recherche empirique, de l’économétrie et de la science des données. Sur ce site, je présente mes projets et partage mes notes de réflexion et d’apprentissage.",
+    "educationTitle": "Parcours académique",
+    "educationIntro": "Formations et certifications",
+    "educationItems": [
+      {
+        "degree": "Master en économie internationale",
+        "institution": "Ankara Hacı Bayram Veli Üniversitesi · Türkiye",
+        "details": ""
+      },
+      {
+        "degree": "MBA en management du pétrole, du gaz et de l’énergie",
+        "institution": "UNICAF",
+        "details": "Formation en cours (statut à confirmer)"
+      },
+      {
+        "degree": "Licence en sciences économiques",
+        "institution": "Université Julius Nyerere de Kankan",
+        "details": "2021"
+      }
+    ],
+    "researchTitle": "Centres d’intérêt",
+    "researchItems": [
+      "Macroéconomie internationale",
+      "Politique monétaire",
+      "Économétrie appliquée",
+      "Data Science et IA",
+      "Économie de l’énergie",
+      "Économies émergentes"
+    ],
+    "skillsTitle": "Méthodes et outils",
+    "skillsIntro": "Économétrie · Séries temporelles · Python · R · EViews",
+    "skillItems": [
+      "Python",
+      "R / RStudio",
+      "EViews",
+      "ARDL & NARDL",
+      "Séries temporelles",
+      "Analyse de données"
+    ],
+    "experienceTitle": "Expériences et engagement",
+    "experienceIntro": "Expérience en commerce international et finance, ainsi que des responsabilités de coordination et de leadership associatif.",
+    "experienceItems": [],
+    "latestPostsTitle": "Dernières publications",
+    "latestProjectsTitle": "Projets sélectionnés",
+    "photoOverline": "MOHAMED I CONDE / PROFIL",
+    "photoCaption": "ÉCONOMIE × RECHERCHE × DONNÉES",
+    "seoDescription": "Portfolio de Mohamed I CONDE : économie internationale, recherche empirique, économétrie et data science.",
+    "heroMicroItems": [
+      "ÉCONOMIE INTERNATIONALE",
+      "ÉCONOMÉTRIE & DONNÉES",
+      "MANAGEMENT DE L’ÉNERGIE"
+    ],
+    "educationOverline": "FORMATION",
+    "researchOverline": "RECHERCHE",
+    "skillsOverline": "MÉTHODES",
+    "experienceOverline": "EXPÉRIENCE",
+    "latestPostsOverline": "BLOG",
+    "latestProjectsOverline": "PROJETS"
+  },
+  "en": {
+    "eyebrow": "ECONOMICS · RESEARCH · TECHNOLOGY",
+    "heroTitle": "Exploring economics. Understanding data. Advancing knowledge.",
+    "heroIntro": "International economics, applied econometrics, energy management and data science: a place to share my research, insights and projects.",
+    "aboutTitle": "About me",
+    "aboutBody": "I am Mohamed I CONDE, a graduate student in international economics, also pursuing studies in oil, gas and energy management. My interests lie at the intersection of international macroeconomics, empirical research, econometrics and data science. On this website, I showcase my projects and share research and learning notes.",
+    "educationTitle": "Education",
+    "educationIntro": "Studies and certifications",
+    "educationItems": [
+      {
+        "degree": "Master’s in International Economics",
+        "institution": "Ankara Hacı Bayram Veli University · Türkiye",
+        "details": ""
+      },
+      {
+        "degree": "MBA in Oil, Gas and Energy Management",
+        "institution": "UNICAF",
+        "details": "Studies in progress (status to confirm)"
+      },
+      {
+        "degree": "Bachelor’s degree in Economics",
+        "institution": "Julius Nyerere University of Kankan",
+        "details": "2021"
+      }
+    ],
+    "researchTitle": "Research interests",
+    "researchItems": [
+      "International Macroeconomics",
+      "Monetary Policy",
+      "Applied Econometrics",
+      "Data Science & AI",
+      "Energy Economics",
+      "Emerging Markets"
+    ],
+    "skillsTitle": "Methods and tools",
+    "skillsIntro": "Econometrics · Time Series · Python · R · EViews",
+    "skillItems": [
+      "Python",
+      "R / RStudio",
+      "EViews",
+      "ARDL & NARDL",
+      "Time Series",
+      "Data Analysis"
+    ],
+    "experienceTitle": "Experience & leadership",
+    "experienceIntro": "Experience in international trade and finance, complemented by leadership and coordination responsibilities in student organizations.",
+    "experienceItems": [],
+    "latestPostsTitle": "Latest articles",
+    "latestProjectsTitle": "Selected projects",
+    "photoOverline": "MOHAMED I CONDE / PROFILE",
+    "photoCaption": "ECONOMICS × RESEARCH × DATA",
+    "seoDescription": "Mohamed I CONDE portfolio: international economics, empirical research, econometrics and data science.",
+    "heroMicroItems": [
+      "INTERNATIONAL ECONOMICS",
+      "ECONOMETRICS & DATA",
+      "ENERGY MANAGEMENT"
+    ],
+    "educationOverline": "EDUCATION",
+    "researchOverline": "RESEARCH",
+    "skillsOverline": "TOOLKIT",
+    "experienceOverline": "EXPERIENCE",
+    "latestPostsOverline": "JOURNAL",
+    "latestProjectsOverline": "PROJECTS"
+  }
+}

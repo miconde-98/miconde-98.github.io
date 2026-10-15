@@ -1,165 +1,874 @@
-# Pages CMS opens OUTSIDE the public site at https://app.pagescms.org
-# Editing is authorized by the GitHub account / repository permissions.
 media:
-  input: public/images/uploads
-  output: /images/uploads
+- name: images
+  label: Images
+  input: public/images
+  output: /images
   rename: safe
-
+  categories:
+  - image
+- name: documents
+  label: CV et documents PDF
+  input: public/docs
+  output: /docs
+  rename: safe
+  extensions:
+  - pdf
 content:
-  - name: posts
-    label: Articles du blog
-    type: collection
-    path: src/content/posts
-    format: yaml-frontmatter
-    filename: "{year}-{month}-{day}-{primary}.md"
-    view:
-      fields: [title, language, category, date, published]
-      primary: title
-      sort: [date, title]
-      default:
-        sort: date
-        order: desc
+- name: pages
+  label: Pages et présentation
+  type: group
+  items:
+  - name: home_page
+    label: Accueil — contenus bilingues
+    type: file
+    path: src/data/home.json
+    format: json
+    operations:
+      delete: false
     fields:
+    - name: fr
+      label: 🇫🇷 Français
+      type: object
+      fields:
+      - name: eyebrow
+        label: Sur-titre / Eyebrow
+        type: string
+      - name: heroTitle
+        label: Titre principal / Hero title
+        type: string
+      - name: heroIntro
+        label: Présentation courte / Hero introduction
+        type: text
+      - name: aboutTitle
+        label: Titre À propos
+        type: string
+      - name: aboutBody
+        label: Texte À propos
+        type: text
+      - name: educationTitle
+        label: Titre Formations
+        type: string
+      - name: educationIntro
+        label: Sous-titre Formations
+        type: text
+      - name: educationItems
+        label: Formations et diplômes (ajouter ou réorganiser)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{degree}'
+        fields:
+        - name: degree
+          label: Formation / Diploma
+          type: string
+        - name: institution
+          label: Université ou établissement
+          type: string
+        - name: details
+          label: Dates et statut
+          type: string
+      - name: researchTitle
+        label: Titre Centres d’intérêt
+        type: string
+      - name: researchItems
+        label: Domaines de recherche (liste)
+        type: string
+        list: true
+      - name: skillsTitle
+        label: Titre Compétences
+        type: string
+      - name: skillsIntro
+        label: Sous-titre Compétences
+        type: text
+      - name: skillItems
+        label: Compétences et méthodes (liste)
+        type: string
+        list: true
+      - name: experienceTitle
+        label: Titre Expériences
+        type: string
+      - name: experienceIntro
+        label: Introduction Expériences
+        type: text
+      - name: experienceItems
+        label: Postes et responsabilités (liste)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{role}'
+        fields:
+        - name: role
+          label: Poste ou fonction
+          type: string
+        - name: organization
+          label: Organisation
+          type: string
+        - name: period
+          label: Période
+          type: string
+        - name: description
+          label: Missions ou réalisations
+          type: text
+      - name: latestPostsTitle
+        label: Titre Dernières publications
+        type: string
+      - name: latestProjectsTitle
+        label: Titre Projets sélectionnés
+        type: string
+      - name: photoOverline
+        label: Légende au-dessus du portrait
+        type: string
+      - name: photoCaption
+        label: Légende sous le portrait
+        type: string
+      - name: seoDescription
+        label: Description Google (SEO)
+        type: text
+      - name: heroMicroItems
+        label: 3 repères sous la présentation
+        type: string
+        list: true
+      - name: educationOverline
+        label: Repère formation
+        type: string
+      - name: researchOverline
+        label: Repère recherche
+        type: string
+      - name: skillsOverline
+        label: Repère compétences
+        type: string
+      - name: experienceOverline
+        label: Repère expériences
+        type: string
+      - name: latestPostsOverline
+        label: Repère blog
+        type: string
+      - name: latestProjectsOverline
+        label: Repère projets
+        type: string
+    - name: en
+      label: 🇬🇧 English
+      type: object
+      fields:
+      - name: eyebrow
+        label: Sur-titre / Eyebrow
+        type: string
+      - name: heroTitle
+        label: Titre principal / Hero title
+        type: string
+      - name: heroIntro
+        label: Présentation courte / Hero introduction
+        type: text
+      - name: aboutTitle
+        label: Titre À propos
+        type: string
+      - name: aboutBody
+        label: Texte À propos
+        type: text
+      - name: educationTitle
+        label: Titre Formations
+        type: string
+      - name: educationIntro
+        label: Sous-titre Formations
+        type: text
+      - name: educationItems
+        label: Formations et diplômes (ajouter ou réorganiser)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{degree}'
+        fields:
+        - name: degree
+          label: Formation / Diploma
+          type: string
+        - name: institution
+          label: Université ou établissement
+          type: string
+        - name: details
+          label: Dates et statut
+          type: string
+      - name: researchTitle
+        label: Titre Centres d’intérêt
+        type: string
+      - name: researchItems
+        label: Domaines de recherche (liste)
+        type: string
+        list: true
+      - name: skillsTitle
+        label: Titre Compétences
+        type: string
+      - name: skillsIntro
+        label: Sous-titre Compétences
+        type: text
+      - name: skillItems
+        label: Compétences et méthodes (liste)
+        type: string
+        list: true
+      - name: experienceTitle
+        label: Titre Expériences
+        type: string
+      - name: experienceIntro
+        label: Introduction Expériences
+        type: text
+      - name: experienceItems
+        label: Postes et responsabilités (liste)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{role}'
+        fields:
+        - name: role
+          label: Poste ou fonction
+          type: string
+        - name: organization
+          label: Organisation
+          type: string
+        - name: period
+          label: Période
+          type: string
+        - name: description
+          label: Missions ou réalisations
+          type: text
+      - name: latestPostsTitle
+        label: Titre Dernières publications
+        type: string
+      - name: latestProjectsTitle
+        label: Titre Projets sélectionnés
+        type: string
+      - name: photoOverline
+        label: Légende au-dessus du portrait
+        type: string
+      - name: photoCaption
+        label: Légende sous le portrait
+        type: string
+      - name: seoDescription
+        label: Description Google (SEO)
+        type: text
+      - name: heroMicroItems
+        label: 3 repères sous la présentation
+        type: string
+        list: true
+      - name: educationOverline
+        label: Repère formation
+        type: string
+      - name: researchOverline
+        label: Repère recherche
+        type: string
+      - name: skillsOverline
+        label: Repère compétences
+        type: string
+      - name: experienceOverline
+        label: Repère expériences
+        type: string
+      - name: latestPostsOverline
+        label: Repère blog
+        type: string
+      - name: latestProjectsOverline
+        label: Repère projets
+        type: string
+  - name: blog_page
+    label: Blog — présentation et SEO
+    type: file
+    path: src/data/blog-page.json
+    format: json
+    operations:
+      delete: false
+    fields:
+    - name: fr
+      label: 🇫🇷 Français
+      type: object
+      fields:
+      - name: kicker
+        label: Sur-titre
+        type: string
       - name: title
-        label: Titre / Title
+        label: Titre principal
         type: string
-        required: true
-      - name: description
-        label: Résumé court / Excerpt
+      - name: intro
+        label: Texte d’introduction
         type: text
-        required: true
-      - name: date
-        label: Date
-        type: date
-        required: true
-        options:
-          format: yyyy-MM-dd
-      - name: language
-        label: Langue
-        type: select
-        required: true
-        options:
-          values:
-            - name: fr
-              label: Français
-            - name: en
-              label: English
-      - name: category
-        label: Catégorie
-        type: select
-        required: true
-        options:
-          values:
-            - name: economy
-              label: Économie
-            - name: econometrics
-              label: Économétrie
-            - name: data
-              label: Data Science & AI
-            - name: energy
-              label: Énergie
-            - name: research
-              label: Notes de recherche
-      - name: published
-        label: Rendre public
-        type: boolean
-        default: false
-        description: "Désactivé = brouillon non publié sur le site."
-      - name: featured
-        label: À la une
-        type: boolean
-        default: false
-      - name: cover
-        label: Image de couverture
-        type: image
-      - name: tags
-        label: Mots-clés (séparés par des virgules)
+      - name: rssLabel
+        label: Libellé du flux RSS
         type: string
-      - name: body
-        label: Texte de l'article
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-  - name: projects
-    label: Projets
-    type: collection
-    path: src/content/projects
-    format: yaml-frontmatter
-    filename: "{primary}.md"
-    view:
-      fields: [title_fr, category, status, published]
-      primary: title_fr
+      - name: seoDescription
+        label: Description Google SEO
+        type: text
+    - name: en
+      label: 🇬🇧 English
+      type: object
+      fields:
+      - name: kicker
+        label: Sur-titre
+        type: string
+      - name: title
+        label: Titre principal
+        type: string
+      - name: intro
+        label: Texte d’introduction
+        type: text
+      - name: rssLabel
+        label: Libellé du flux RSS
+        type: string
+      - name: seoDescription
+        label: Description Google SEO
+        type: text
+  - name: projects_page
+    label: Projets — présentation et SEO
+    type: file
+    path: src/data/projects-page.json
+    format: json
+    operations:
+      delete: false
     fields:
-      - name: title_fr
-        label: Titre français
+    - name: fr
+      label: 🇫🇷 Français
+      type: object
+      fields:
+      - name: kicker
+        label: Sur-titre
         type: string
-        required: true
-      - name: title_en
-        label: English title
+      - name: title
+        label: Titre principal
         type: string
-        required: true
-      - name: summary_fr
-        label: Résumé français
+      - name: intro
+        label: Texte d’introduction
         type: text
-        required: true
-      - name: summary_en
-        label: English summary
+      - name: allFilterLabel
+        label: Libellé Tous les projets
+        type: string
+      - name: seoDescription
+        label: Description Google SEO
         type: text
-        required: true
-      - name: category
-        label: Catégorie
-        type: select
-        options:
-          values: [research, data, ml, visualization]
-      - name: status
-        label: Statut
-        type: select
-        options:
-          values: [ongoing, revision, completed]
-      - name: tools
-        label: Outils / Méthodes (séparés par des virgules)
+    - name: en
+      label: 🇬🇧 English
+      type: object
+      fields:
+      - name: kicker
+        label: Sur-titre
         type: string
-      - name: github
-        label: URL du dépôt GitHub (facultatif)
+      - name: title
+        label: Titre principal
         type: string
-      - name: document
-        label: Lien vers un rapport ou article (facultatif)
+      - name: intro
+        label: Texte d’introduction
+        type: text
+      - name: allFilterLabel
+        label: Libellé Tous les projets
         type: string
-      - name: featured
-        label: Mettre en avant
-        type: boolean
-        default: false
-      - name: published
-        label: Rendre public
-        type: boolean
-        default: false
-      - name: body
-        label: Description complémentaire (facultative)
-        type: rich-text
+      - name: seoDescription
+        label: Description Google SEO
+        type: text
   - name: identity
-    label: Coordonnées et liens
+    label: Profil, photos, CV et réseaux
     type: file
     path: src/data/site.json
     format: json
     operations:
       delete: false
     fields:
-      - name: displayName
-        label: Nom affiché
+    - name: displayName
+      label: Nom complet affiché
+      type: string
+    - name: brandPrimary
+      label: Nom dans le bandeau - première partie
+      type: string
+    - name: brandEmphasis
+      label: Nom dans le bandeau - partie en gras
+      type: string
+    - name: brandTagFr
+      label: Sous-titre de navigation français
+      type: string
+    - name: brandTagEn
+      label: Navigation subtitle English
+      type: string
+    - name: footerFr
+      label: Phrase de bas de page - français
+      type: text
+    - name: footerEn
+      label: Footer sentence - English
+      type: text
+    - name: email
+      label: Email professionnel
+      type: string
+    - name: github
+      label: Lien GitHub
+      type: string
+    - name: linkedin
+      label: Lien LinkedIn
+      type: string
+    - name: cvFr
+      label: CV français PDF
+      type: file
+      options:
+        media: documents
+        extensions:
+        - pdf
+    - name: cvEn
+      label: English CV PDF
+      type: file
+      options:
+        media: documents
+        extensions:
+        - pdf
+    - name: portrait
+      label: Photo principale (Accueil)
+      type: image
+      options:
+        media: images
+    - name: speaking
+      label: Photo expériences et engagement
+      type: image
+      options:
+        media: images
+    - name: monogram
+      label: Monogramme / Logo texte
+      type: string
+    - name: metaTitleFr
+      label: Titre SEO global français
+      type: string
+    - name: metaTitleEn
+      label: Global SEO title English
+      type: string
+    - name: metaDescriptionFr
+      label: Description générale SEO français
+      type: text
+    - name: metaDescriptionEn
+      label: Global SEO description English
+      type: text
+  - name: ui_texts
+    label: Menus, boutons et traductions
+    type: file
+    path: src/data/ui.json
+    format: json
+    operations:
+      delete: false
+    fields:
+    - name: fr
+      label: 🇫🇷 Français
+      type: object
+      fields:
+      - name: home
+        label: home
         type: string
-      - name: email
-        label: Email public
+      - name: blog
+        label: blog
         type: string
-      - name: github
-        label: Profil GitHub (URL)
+      - name: projects
+        label: projects
         type: string
-      - name: linkedin
-        label: Profil LinkedIn (URL)
+      - name: contact
+        label: contact
         type: string
-      - name: cvFr
-        label: Chemin du CV français (ex. /docs/cv-fr.pdf)
+      - name: cv
+        label: cv
         type: string
-      - name: cvEn
-        label: Path to English CV (e.g. /docs/cv-en.pdf)
+      - name: cvSoon
+        label: cvSoon
         type: string
+      - name: explore
+        label: explore
+        type: string
+      - name: viewAll
+        label: viewAll
+        type: string
+      - name: viewProjects
+        label: viewProjects
+        type: string
+      - name: search
+        label: search
+        type: string
+      - name: all
+        label: all
+        type: string
+      - name: allLangs
+        label: allLangs
+        type: string
+      - name: noPosts
+        label: noPosts
+        type: text
+      - name: noMatches
+        label: noMatches
+        type: text
+      - name: noProjects
+        label: noProjects
+        type: text
+      - name: featured
+        label: featured
+        type: string
+      - name: read
+        label: read
+        type: string
+      - name: minutes
+        label: minutes
+        type: string
+      - name: backBlog
+        label: backBlog
+        type: string
+      - name: share
+        label: share
+        type: string
+      - name: copy
+        label: copy
+        type: string
+      - name: copied
+        label: copied
+        type: string
+      - name: source
+        label: source
+        type: string
+      - name: doc
+        label: doc
+        type: string
+      - name: repoSoon
+        label: repoSoon
+        type: string
+      - name: ongoing
+        label: ongoing
+        type: string
+      - name: revision
+        label: revision
+        type: string
+      - name: completed
+        label: completed
+        type: string
+      - name: learnMore
+        label: learnMore
+        type: string
+      - name: mail
+        label: mail
+        type: string
+      - name: legal
+        label: legal
+        type: string
+      - name: articlesLatest
+        label: articlesLatest
+        type: string
+      - name: groups
+        label: Noms des catégories du blog
+        type: object
+        fields:
+        - name: economy
+          label: economy
+          type: string
+        - name: econometrics
+          label: econometrics
+          type: string
+        - name: data
+          label: data
+          type: string
+        - name: energy
+          label: energy
+          type: string
+        - name: research
+          label: research
+          type: string
+      - name: projectGroups
+        label: Noms des catégories de projets
+        type: object
+        fields:
+        - name: research
+          label: research
+          type: string
+        - name: data
+          label: data
+          type: string
+        - name: ml
+          label: ml
+          type: string
+        - name: visualization
+          label: visualization
+          type: string
+    - name: en
+      label: 🇬🇧 English
+      type: object
+      fields:
+      - name: home
+        label: home
+        type: string
+      - name: blog
+        label: blog
+        type: string
+      - name: projects
+        label: projects
+        type: string
+      - name: contact
+        label: contact
+        type: string
+      - name: cv
+        label: cv
+        type: string
+      - name: cvSoon
+        label: cvSoon
+        type: string
+      - name: explore
+        label: explore
+        type: string
+      - name: viewAll
+        label: viewAll
+        type: string
+      - name: viewProjects
+        label: viewProjects
+        type: string
+      - name: search
+        label: search
+        type: string
+      - name: all
+        label: all
+        type: string
+      - name: allLangs
+        label: allLangs
+        type: string
+      - name: noPosts
+        label: noPosts
+        type: text
+      - name: noMatches
+        label: noMatches
+        type: text
+      - name: noProjects
+        label: noProjects
+        type: text
+      - name: featured
+        label: featured
+        type: string
+      - name: read
+        label: read
+        type: string
+      - name: minutes
+        label: minutes
+        type: string
+      - name: backBlog
+        label: backBlog
+        type: string
+      - name: share
+        label: share
+        type: string
+      - name: copy
+        label: copy
+        type: string
+      - name: copied
+        label: copied
+        type: string
+      - name: source
+        label: source
+        type: string
+      - name: doc
+        label: doc
+        type: string
+      - name: repoSoon
+        label: repoSoon
+        type: string
+      - name: ongoing
+        label: ongoing
+        type: string
+      - name: revision
+        label: revision
+        type: string
+      - name: completed
+        label: completed
+        type: string
+      - name: learnMore
+        label: learnMore
+        type: string
+      - name: mail
+        label: mail
+        type: string
+      - name: legal
+        label: legal
+        type: string
+      - name: articlesLatest
+        label: articlesLatest
+        type: string
+      - name: groups
+        label: Noms des catégories du blog
+        type: object
+        fields:
+        - name: economy
+          label: economy
+          type: string
+        - name: econometrics
+          label: econometrics
+          type: string
+        - name: data
+          label: data
+          type: string
+        - name: energy
+          label: energy
+          type: string
+        - name: research
+          label: research
+          type: string
+      - name: projectGroups
+        label: Noms des catégories de projets
+        type: object
+        fields:
+        - name: research
+          label: research
+          type: string
+        - name: data
+          label: data
+          type: string
+        - name: ml
+          label: ml
+          type: string
+        - name: visualization
+          label: visualization
+          type: string
+- name: editorial
+  label: Publications et réalisations
+  type: group
+  items:
+  - name: posts
+    label: Articles du blog
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    filename: '{year}-{month}-{day}-{primary}.md'
+    view:
+      fields:
+      - title
+      - language
+      - category
+      - date
+      - published
+      primary: title
+      sort:
+      - date
+      - title
+      default:
+        sort: date
+        order: desc
+    fields:
+    - name: title
+      label: Titre / Title
+      type: string
+      required: true
+    - name: description
+      label: Résumé court / Excerpt
+      type: text
+      required: true
+    - name: date
+      label: Date
+      type: date
+      required: true
+      options:
+        format: yyyy-MM-dd
+    - name: language
+      label: Langue
+      type: select
+      required: true
+      options:
+        values:
+        - name: fr
+          label: Français
+        - name: en
+          label: English
+    - name: category
+      label: Catégorie
+      type: select
+      required: true
+      options:
+        values:
+        - name: economy
+          label: Économie
+        - name: econometrics
+          label: Économétrie
+        - name: data
+          label: Data Science & AI
+        - name: energy
+          label: Énergie
+        - name: research
+          label: Notes de recherche
+    - name: published
+      label: Rendre public
+      type: boolean
+      default: false
+      description: Désactivé = brouillon non publié sur le site.
+    - name: featured
+      label: À la une
+      type: boolean
+      default: false
+    - name: cover
+      label: Image de couverture
+      type: image
+      options:
+        media: images
+    - name: tags
+      label: Mots-clés (séparés par des virgules)
+      type: string
+    - name: body
+      label: Texte de l'article
+      type: rich-text
+      options:
+        format: markdown
+        switcher: true
+  - name: projects
+    label: Projets
+    type: collection
+    path: src/content/projects
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      fields:
+      - title_fr
+      - category
+      - status
+      - published
+      primary: title_fr
+    fields:
+    - name: title_fr
+      label: Titre français
+      type: string
+      required: true
+    - name: title_en
+      label: English title
+      type: string
+      required: true
+    - name: summary_fr
+      label: Résumé français
+      type: text
+      required: true
+    - name: summary_en
+      label: English summary
+      type: text
+      required: true
+    - name: category
+      label: Catégorie
+      type: select
+      options:
+        values:
+        - research
+        - data
+        - ml
+        - visualization
+    - name: status
+      label: Statut
+      type: select
+      options:
+        values:
+        - ongoing
+        - revision
+        - completed
+    - name: tools
+      label: Outils / Méthodes (séparés par des virgules)
+      type: string
+    - name: github
+      label: URL du dépôt GitHub (facultatif)
+      type: string
+    - name: document
+      label: Lien vers un rapport ou article (facultatif)
+      type: string
+    - name: featured
+      label: Mettre en avant
+      type: boolean
+      default: false
+    - name: published
+      label: Rendre public
+      type: boolean
+      default: false
+    - name: body
+      label: Description complémentaire (facultative)
+      type: rich-text

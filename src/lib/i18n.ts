@@ -1,3 +1,4 @@
+import ui from '../data/ui.json';
 export type Lang = 'fr' | 'en';
 export const langs: Lang[] = ['fr', 'en'];
 export const dictionary = {
@@ -52,7 +53,7 @@ export const dictionary = {
     projectGroups:{research:'Economic research',data:'Data Science',ml:'Machine Learning',visualization:'Visualization'},
   }
 };
-export const tr = (lang: Lang) => dictionary[lang];
+export const tr = (lang: Lang) => ({...dictionary[lang], ...ui[lang], groups:{...dictionary[lang].groups,...ui[lang].groups}, projectGroups:{...dictionary[lang].projectGroups,...ui[lang].projectGroups}});
 export const withBase = (path: string) => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   return `${base}${path.startsWith('/')?path:`/${path}`}`;
