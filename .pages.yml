@@ -1,0 +1,165 @@
+# Pages CMS opens OUTSIDE the public site at https://app.pagescms.org
+# Editing is authorized by the GitHub account / repository permissions.
+media:
+  input: public/images/uploads
+  output: /images/uploads
+  rename: safe
+
+content:
+  - name: posts
+    label: Articles du blog
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, language, category, date, published]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titre / Title
+        type: string
+        required: true
+      - name: description
+        label: Résumé court / Excerpt
+        type: text
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: language
+        label: Langue
+        type: select
+        required: true
+        options:
+          values:
+            - name: fr
+              label: Français
+            - name: en
+              label: English
+      - name: category
+        label: Catégorie
+        type: select
+        required: true
+        options:
+          values:
+            - name: economy
+              label: Économie
+            - name: econometrics
+              label: Économétrie
+            - name: data
+              label: Data Science & AI
+            - name: energy
+              label: Énergie
+            - name: research
+              label: Notes de recherche
+      - name: published
+        label: Rendre public
+        type: boolean
+        default: false
+        description: "Désactivé = brouillon non publié sur le site."
+      - name: featured
+        label: À la une
+        type: boolean
+        default: false
+      - name: cover
+        label: Image de couverture
+        type: image
+      - name: tags
+        label: Mots-clés (séparés par des virgules)
+        type: string
+      - name: body
+        label: Texte de l'article
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+  - name: projects
+    label: Projets
+    type: collection
+    path: src/content/projects
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title_fr, category, status, published]
+      primary: title_fr
+    fields:
+      - name: title_fr
+        label: Titre français
+        type: string
+        required: true
+      - name: title_en
+        label: English title
+        type: string
+        required: true
+      - name: summary_fr
+        label: Résumé français
+        type: text
+        required: true
+      - name: summary_en
+        label: English summary
+        type: text
+        required: true
+      - name: category
+        label: Catégorie
+        type: select
+        options:
+          values: [research, data, ml, visualization]
+      - name: status
+        label: Statut
+        type: select
+        options:
+          values: [ongoing, revision, completed]
+      - name: tools
+        label: Outils / Méthodes (séparés par des virgules)
+        type: string
+      - name: github
+        label: URL du dépôt GitHub (facultatif)
+        type: string
+      - name: document
+        label: Lien vers un rapport ou article (facultatif)
+        type: string
+      - name: featured
+        label: Mettre en avant
+        type: boolean
+        default: false
+      - name: published
+        label: Rendre public
+        type: boolean
+        default: false
+      - name: body
+        label: Description complémentaire (facultative)
+        type: rich-text
+  - name: identity
+    label: Coordonnées et liens
+    type: file
+    path: src/data/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: displayName
+        label: Nom affiché
+        type: string
+      - name: email
+        label: Email public
+        type: string
+      - name: github
+        label: Profil GitHub (URL)
+        type: string
+      - name: linkedin
+        label: Profil LinkedIn (URL)
+        type: string
+      - name: cvFr
+        label: Chemin du CV français (ex. /docs/cv-fr.pdf)
+        type: string
+      - name: cvEn
+        label: Path to English CV (e.g. /docs/cv-en.pdf)
+        type: string

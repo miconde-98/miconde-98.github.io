@@ -1,0 +1,21 @@
+{
+  "name": "mohamed-i-conde-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:content": "node scripts/check-content.mjs"
+  },
+  "engines": {"node": ">=20.3.0"},
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "remark-math": "^6.0.0",
+    "rehype-katex": "^7.0.0",
+    "katex": "^0.16.0"
+  },
+  "devDependencies": {}
+}

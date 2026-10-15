@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { publicProjects,tags } from '../../../lib/content';
+import {tr,localized,media} from '../../../lib/i18n';
+import {render} from 'astro:content';
+import type {Lang} from '../../../lib/i18n';
+export async function getStaticPaths(){const projects=await publicProjects();return projects.flatMap(p=>['fr','en'].map(lang=>({params:{lang,slug:p.id},props:{project:p}})));}
+const {project}=Astro.props;
+const lang=Astro.params.lang as Lang;
+const t=tr(lang);
+const title=lang==='fr'?project.data.title_fr:project.data.title_en;
+const summary=lang==='fr'?project.data.summary_fr:project.data.summary_en;
+const {Content}=await render(project);
+---
+<BaseLayout lang={lang} title={title} description={summary}>
+  <article class="article-container container"><a class="back-link" href={localized(lang,'projects/')}>← {t.projects}</a>
+    <div class="article-kicker"><span>{t.projectGroups[project.data.category]}</span><span class="badge-language">{t[project.data.status]}</span></div>
+    <h1>{title}</h1><p class="article-dek">{summary}</p><div class="tag-row article-tags">{tags(project.data.tools).map(tag=><span class="skill-chip">{tag}</span>)}</div>
+    <div class="project-links">{project.data.github?<a class="button button-primary" href={project.data.github} target="_blank" rel="noopener noreferrer">{t.source} ↗</a>:<span class="button button-disabled">{t.repoSoon}</span>}{project.data.document && <a class="button button-outline" href={media(project.data.document) || project.data.document} target="_blank" rel="noopener noreferrer">{t.doc} ↗</a>}</div>
+    {project.body?.trim() && <div class="article-content"><Content /></div>}
+  </article>
+</BaseLayout>

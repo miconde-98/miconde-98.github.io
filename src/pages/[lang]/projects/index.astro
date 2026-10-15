@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import {publicProjects} from '../../../lib/content';
+import {tr} from '../../../lib/i18n';
+import type {Lang} from '../../../lib/i18n';
+export function getStaticPaths(){return [{params:{lang:'fr'}},{params:{lang:'en'}}];}
+const lang=Astro.params.lang as Lang;
+const t=tr(lang);
+const projects=await publicProjects();
+---
+<BaseLayout lang={lang} title={t.projects} description={t.projectsIntro}>
+  <section class="page-head container"><p class="overline">RESEARCH / DATA / MACHINE LEARNING</p><h1>{t.projects}</h1><p>{t.projectsIntro}</p></section>
+  <section class="container posts-section">
+  {projects.length>0 ? <><div class="project-tabs"><button class="active" data-project-filter="all">{lang==='fr'?'Tous les projets':'All projects'}</button>{Object.entries(t.projectGroups).map(([key,value])=><button data-project-filter={key}>{value}</button>)}</div><div class="cards-grid" id="projects-grid">{projects.map(p=><ProjectCard project={p} lang={lang}/>)}</div></> : <div class="empty-state">{t.noProjects}</div>}
+  </section>
+</BaseLayout>
+<script>
+  const buttons=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-project-filter]'));
+  const projects=Array.from(document.querySelectorAll<HTMLElement>('[data-project-category]'));
+  buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(b=>b.classList.toggle('active',b===button));projects.forEach(card=>card.hidden=button.dataset.projectFilter!=='all' && card.dataset.projectCategory!==button.dataset.projectFilter);}));
+</script>

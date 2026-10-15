@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import {publicPosts,formatDate,tags} from '../../../lib/content';
+import { tr,localized } from '../../../lib/i18n';
+import {render} from 'astro:content';
+import type {Lang} from '../../../lib/i18n';
+export async function getStaticPaths(){
+  const posts=await publicPosts();
+  return posts.map(p=>({params:{lang:p.data.language,slug:p.id},props:{post:p,other:posts.filter(x=>x.id!==p.id).slice(0,2)}}));
+}
+const {post,other}=Astro.props;
+const lang=Astro.params.lang as Lang;
+const t=tr(lang);
+const {Content,headings}=await render(post);
+const shareUrl=Astro.url.toString();
+---
+<BaseLayout lang={lang} title={post.data.title} description={post.data.description} cover={post.data.cover}>
+  <article class="article-container container" data-pagefind-body>
+    <a class="back-link" href={localized(lang,'blog/')}>← {t.backBlog}</a>
+    <div class="article-kicker"><span>{t.groups[post.data.category]}</span><span class="badge-language">{lang.toUpperCase()}</span></div>
+    <h1>{post.data.title}</h1><p class="article-dek">{post.data.description}</p>
+    <div class="article-info"><span>Mohamed I CONDE</span><span>·</span><time datetime={post.data.date.toISOString()}>{formatDate(post.data.date,lang)}</time></div>
+    {post.data.cover && <img src={post.data.cover} alt="" class="article-cover" />}
+    <div class="article-content"><Content /></div>
+    <div class="tag-row article-tags">{tags(post.data.tags).map(tag=><span class="skill-chip">{tag}</span>)}</div>
+    <div class="share-panel"><strong>{t.share}</strong><div><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer">Facebook ↗</a><button id="copy-article-url" data-url={shareUrl} data-done={t.copied} type="button">{t.copy} ⧉</button></div></div>
+  </article>
+  {other.length>0 && <section class="section section-soft"><div class="container"><h2 class="section-heading">{t.articlesLatest}</h2><div class="cards-grid">{other.map(p=><PostCard post={p} lang={lang}/>)}</div></div></section>}
+</BaseLayout>
+<script>
+  const copy=document.getElementById('copy-article-url');
+  copy?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copy.dataset.url||location.href);copy.textContent=copy.dataset.done||'Copied!';}catch{window.prompt('Copy URL:',copy.dataset.url||location.href);}});
+</script>

@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+import { media, withBase } from '../lib/i18n';
+import type {Lang} from '../lib/i18n';
+interface Props { lang: Lang; title?: string; description?: string; cover?:string; }
+const {lang, title='', description='', cover=''} = Astro.props;
+const siteTitle = title ? `${title} · ${site.displayName}` : `${site.displayName} — Economics, Research & Data`;
+const excerpt = description || 'Portfolio, economic insights, applied econometrics, data science and energy management.';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL(media(cover) || withBase('/images/portrait.webp'), Astro.site).toString();
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10243a" />
+    <meta name="description" content={excerpt}/>
+    <link rel="canonical" href={canonical}/>
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')}/>
+    <meta property="og:site_name" content={site.displayName}/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content={siteTitle}/>
+    <meta property="og:description" content={excerpt}/>
+    <meta property="og:url" content={canonical}/>
+    <meta property="og:image" content={ogImage}/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <link rel="alternate" type="application/rss+xml" title="Research Notes RSS" href={new URL(withBase(`/${lang}/feed.xml`),Astro.site).toString()}/>
+    <title>{siteTitle}</title>
+  </head>
+  <body>
+    <div class="reading-progress" aria-hidden="true"></div>
+    <Header lang={lang}/>
+    <main id="main-content"><slot /></main>
+    <Footer lang={lang}/>
+    <script>
+      const bar = document.querySelector<HTMLElement>('.reading-progress');
+      window.addEventListener('scroll', () => { if (!bar) return; const total=document.documentElement.scrollHeight-window.innerHeight; bar.style.width = `${total>0?window.scrollY/total*100:0}%`; }, {passive:true});
+    </script>
+  </body>
+</html>

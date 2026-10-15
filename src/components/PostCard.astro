@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { localized, media,tr } from '../lib/i18n';
+import type {Lang} from '../lib/i18n';
+import {formatDate,tags} from '../lib/content';
+interface Props {post:CollectionEntry<'posts'>; lang:Lang;}
+const {post,lang}=Astro.props;
+const t=tr(lang);
+const target=localized(post.data.language,`blog/${post.id}/`);
+const cover=media(post.data.cover);
+const searchable=[post.data.title,post.data.description,post.data.category,post.data.language,tags(post.data.tags).join(' '),post.body||''].join(' ').toLowerCase();
+---
+<article class="post-card" data-post-card data-category={post.data.category} data-lang={post.data.language} data-search={searchable}>
+  <a class="post-card-cover" href={target} aria-label={post.data.title}>{cover ? <img src={cover} alt="" loading="lazy" /> : <span class="post-symbol" aria-hidden="true">{post.data.category==='economy'?'↗':post.data.category==='data'?'{}':post.data.category==='econometrics'?'Σ':post.data.category==='energy'?'◈':'◎'}</span>}</a>
+  <div class="post-card-body"><div class="micro-line"><span>{t.groups[post.data.category]}</span><span class="badge-language">{post.data.language.toUpperCase()}</span></div>
+    <h3><a href={target}>{post.data.title}</a></h3><p>{post.data.description}</p>
+    <div class="card-bottom"><small>{formatDate(post.data.date, lang)}</small><a href={target} aria-label={`${t.read}: ${post.data.title}`} class="text-arrow">{t.read} ↗</a></div>
+  </div>
+</article>
