@@ -4,14 +4,13 @@
     "heroTitle": "Explorer l’économie. Comprendre les données. Produire des connaissances.",
     "heroIntro": "Économie internationale, économétrie appliquée, management de l’énergie et science des données : un espace pour partager mes recherches, mes analyses et mes projets.",
     "aboutTitle": "À propos",
-    "aboutBody": "Je suis Mohamed I CONDE, étudiant en économie internationale et engagé dans une formation en management du pétrole, du gaz et de l’énergie. Mes intérêts se situent à l’intersection de la macroéconomie internationale, de la recherche empirique, de l’économétrie et de la science des données. Sur ce site, je présente mes projets et partage mes notes de réflexion et d’apprentissage.",
+    "aboutBody": "Je suis Mohamed I CONDE, étudiant en master économie internationale et engagé dans une formation en management du pétrole, du gaz et de l’énergie. Mes intérêts se situent à l’intersection de la macroéconomie internationale, de la géopolitique de l'énergie, de la recherche empirique, de l’économétrie et de la science des données. Sur ce site, je présente mes projets et partage mes notes de réflexion et d’apprentissage.",
     "educationTitle": "Parcours académique",
     "educationIntro": "Formations et certifications",
     "educationItems": [
       {
         "degree": "Master en économie internationale",
-        "institution": "Ankara Hacı Bayram Veli Üniversitesi · Türkiye",
-        "details": ""
+        "institution": "Ankara Hacı Bayram Veli Üniversitesi · Türkiye"
       },
       {
         "degree": "MBA en management du pétrole, du gaz et de l’énergie",
@@ -41,11 +40,11 @@
       "EViews",
       "ARDL & NARDL",
       "Séries temporelles",
-      "Analyse de données"
+      "Analyse de données",
+      "Excel"
     ],
     "experienceTitle": "Expériences et engagement",
     "experienceIntro": "Expérience en commerce international et finance, ainsi que des responsabilités de coordination et de leadership associatif.",
-    "experienceItems": [],
     "latestPostsTitle": "Dernières publications",
     "latestProjectsTitle": "Projets sélectionnés",
     "photoOverline": "MOHAMED I CONDE / PROFIL",
@@ -74,8 +73,7 @@
     "educationItems": [
       {
         "degree": "Master’s in International Economics",
-        "institution": "Ankara Hacı Bayram Veli University · Türkiye",
-        "details": ""
+        "institution": "Ankara Hacı Bayram Veli University · Türkiye"
       },
       {
         "degree": "MBA in Oil, Gas and Energy Management",
@@ -109,7 +107,6 @@
     ],
     "experienceTitle": "Experience & leadership",
     "experienceIntro": "Experience in international trade and finance, complemented by leadership and coordination responsibilities in student organizations.",
-    "experienceItems": [],
     "latestPostsTitle": "Latest articles",
     "latestProjectsTitle": "Selected projects",
     "photoOverline": "MOHAMED I CONDE / PROFILE",
