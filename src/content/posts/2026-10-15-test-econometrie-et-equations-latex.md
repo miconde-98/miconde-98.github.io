@@ -4,10 +4,9 @@ description: Test du rendu des équations mathématiques et du code R sur mon bl
 date: 2026-10-15
 language: fr
 category: econometrics
-published: false
+published: true
 featured: false
 ---
-
 ## Introduction
 
 L'économétrie permet d'analyser les relations entre les variables économiques.
