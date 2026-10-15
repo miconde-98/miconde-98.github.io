@@ -10,12 +10,13 @@
     "educationItems": [
       {
         "degree": "Master en économie internationale",
-        "institution": "Ankara Hacı Bayram Veli Üniversitesi · Türkiye"
+        "institution": "Ankara Hacı Bayram Veli Üniversitesi · Türkiye",
+        "details": "Formation en cours"
       },
       {
         "degree": "MBA en management du pétrole, du gaz et de l’énergie",
         "institution": "UNICAF",
-        "details": "Formation en cours (statut à confirmer)"
+        "details": "Formation en cours"
       },
       {
         "degree": "Licence en sciences économiques",
