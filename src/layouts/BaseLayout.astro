@@ -8,10 +8,10 @@ import { media, withBase } from '../lib/i18n';
 import type {Lang} from '../lib/i18n';
 interface Props { lang: Lang; title?: string; description?: string; cover?:string; }
 const {lang, title='', description='', cover=''} = Astro.props;
-const siteTitle = title ? `${title} · ${site.displayName}` : `${site.displayName} — Economics, Research & Data`;
-const excerpt = description || 'Portfolio, economic insights, applied econometrics, data science and energy management.';
+const siteTitle = title ? `${title} · ${site.displayName}` : `${site.displayName} — ${lang==='fr'?site.metaTitleFr:site.metaTitleEn}`;
+const excerpt = description || (lang==='fr'?site.metaDescriptionFr:site.metaDescriptionEn);
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = new URL(media(cover) || withBase('/images/portrait.webp'), Astro.site).toString();
+const ogImage = new URL(media(cover) || media(site.portrait) || withBase('/images/portrait.webp'), Astro.site).toString();
 ---
 <!doctype html>
 <html lang={lang}>

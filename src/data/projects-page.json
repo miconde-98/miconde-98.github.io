@@ -1,0 +1,16 @@
+{
+  "fr": {
+    "kicker": "RECHERCHE / DONNÉES / MACHINE LEARNING",
+    "title": "Projets",
+    "intro": "Une sélection de travaux en économie appliquée, économétrie, data science et machine learning.",
+    "allFilterLabel": "Tous les projets",
+    "seoDescription": "Projets de recherche et de data science de Mohamed I CONDE."
+  },
+  "en": {
+    "kicker": "RESEARCH / DATA / MACHINE LEARNING",
+    "title": "Projects",
+    "intro": "A selection of work in applied economics, econometrics, data science and machine learning.",
+    "allFilterLabel": "All projects",
+    "seoDescription": "Research and data science projects by Mohamed I CONDE."
+  }
+}

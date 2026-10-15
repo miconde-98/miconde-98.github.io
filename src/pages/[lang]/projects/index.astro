@@ -4,15 +4,17 @@ import ProjectCard from '../../../components/ProjectCard.astro';
 import {publicProjects} from '../../../lib/content';
 import {tr} from '../../../lib/i18n';
 import type {Lang} from '../../../lib/i18n';
+import projectsData from '../../../data/projects-page.json';
 export function getStaticPaths(){return [{params:{lang:'fr'}},{params:{lang:'en'}}];}
 const lang=Astro.params.lang as Lang;
 const t=tr(lang);
+const page=projectsData[lang];
 const projects=await publicProjects();
 ---
-<BaseLayout lang={lang} title={t.projects} description={t.projectsIntro}>
-  <section class="page-head container"><p class="overline">RESEARCH / DATA / MACHINE LEARNING</p><h1>{t.projects}</h1><p>{t.projectsIntro}</p></section>
+<BaseLayout lang={lang} title={page.title} description={page.seoDescription || page.intro}>
+  <section class="page-head container"><p class="overline">{page.kicker}</p><h1>{page.title}</h1><p>{page.intro}</p></section>
   <section class="container posts-section">
-  {projects.length>0 ? <><div class="project-tabs"><button class="active" data-project-filter="all">{lang==='fr'?'Tous les projets':'All projects'}</button>{Object.entries(t.projectGroups).map(([key,value])=><button data-project-filter={key}>{value}</button>)}</div><div class="cards-grid" id="projects-grid">{projects.map(p=><ProjectCard project={p} lang={lang}/>)}</div></> : <div class="empty-state">{t.noProjects}</div>}
+  {projects.length>0 ? <><div class="project-tabs"><button class="active" data-project-filter="all">{page.allFilterLabel}</button>{Object.entries(t.projectGroups).map(([key,value])=><button data-project-filter={key}>{value}</button>)}</div><div class="cards-grid" id="projects-grid">{projects.map(p=><ProjectCard project={p} lang={lang}/>)}</div></> : <div class="empty-state">{t.noProjects}</div>}
   </section>
 </BaseLayout>
 <script>

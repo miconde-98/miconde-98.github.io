@@ -1,8 +1,21 @@
 {
   "displayName": "Mohamed I CONDE",
+  "brandPrimary": "MOHAMED",
+  "brandEmphasis": "I CONDE",
+  "brandTagFr": "ÉCONOMIE · RECHERCHE · DONNÉES",
+  "brandTagEn": "ECONOMICS · RESEARCH · DATA",
+  "footerFr": "Économie, recherche et données.",
+  "footerEn": "At the intersection of economics, research and data.",
   "email": "mohamedicond@gmail.com",
   "github": "https://github.com/miconde-98",
   "linkedin": "",
   "cvFr": "",
-  "cvEn": ""
+  "cvEn": "",
+  "portrait": "/images/portrait.webp",
+  "speaking": "/images/speaking.webp",
+  "monogram": "MC",
+  "metaTitleFr": "Économie, recherche et données",
+  "metaTitleEn": "Economics, Research & Data",
+  "metaDescriptionFr": "Portfolio et blog académique : économie internationale, économétrie appliquée, données et management de l’énergie.",
+  "metaDescriptionEn": "Academic portfolio and blog: international economics, applied econometrics, data science and energy management."
 }
