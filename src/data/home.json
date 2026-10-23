@@ -126,5 +126,70 @@
     "experienceOverline": "EXPERIENCE",
     "latestPostsOverline": "JOURNAL",
     "latestProjectsOverline": "PROJECTS"
+  },
+  "tr": {
+    "eyebrow": "EKONOMİ · ARAŞTIRMA · BİLİM İLETİŞİMİ",
+    "heroTitle": "Ekonomiyi keşfetmek. Verileri anlamak. Bilgi üretmek.",
+    "heroIntro": "Uluslararası iktisat, uygulamalı ekonometri, enerji yönetimi ve veri bilimi üzerine araştırmalarımı, analizlerimi ve projelerimi paylaştığım bir alan.",
+    "aboutTitle": "Hakkımda",
+    "aboutBody": "Ben Mohamed I CONDE. Uluslararası iktisat alanında yüksek lisans eğitimi alıyor, aynı zamanda petrol, doğal gaz ve enerji yönetimi üzerine çalışmalarımı sürdürüyorum. İlgi alanlarım uluslararası makroekonomi, enerji jeopolitiği, ampirik araştırma, ekonometri ve veri biliminin kesişiminde yer alıyor. Bu sitede projelerimi tanıtıyor; araştırma, değerlendirme ve öğrenme notlarımı paylaşıyorum.",
+    "educationTitle": "Akademik eğitim",
+    "educationIntro": "Eğitim ve sertifikalar",
+    "educationItems": [
+      {
+        "degree": "Uluslararası İktisat Yüksek Lisansı",
+        "institution": "Ankara Hacı Bayram Veli Üniversitesi · Türkiye",
+        "details": "Devam ediyor"
+      },
+      {
+        "degree": "Petrol, Doğal Gaz ve Enerji Yönetimi MBA",
+        "institution": "UNICAF",
+        "details": "Devam ediyor"
+      },
+      {
+        "degree": "İktisat Lisansı",
+        "institution": "Kankan Julius Nyerere Üniversitesi",
+        "details": "2021"
+      }
+    ],
+    "researchTitle": "Araştırma alanları",
+    "researchItems": [
+      "Uluslararası makroekonomi",
+      "Para politikası",
+      "Uygulamalı ekonometri",
+      "Veri bilimi ve yapay zekâ",
+      "Enerji ekonomisi",
+      "Yükselen ekonomiler"
+    ],
+    "skillsTitle": "Yöntemler ve araçlar",
+    "skillsIntro": "Ekonometri · Zaman serileri · Python · R · EViews",
+    "skillItems": [
+      "Python",
+      "R / RStudio",
+      "EViews",
+      "ARDL ve NARDL",
+      "Zaman serileri",
+      "Veri analizi",
+      "Excel"
+    ],
+    "experienceTitle": "Deneyim ve toplumsal katılım",
+    "experienceIntro": "Uluslararası ticaret ve finans alanındaki deneyimlerimin yanı sıra öğrenci topluluklarında koordinasyon ve liderlik sorumlulukları üstleniyorum.",
+    "experienceItems": [],
+    "latestPostsTitle": "Son yayınlar",
+    "latestProjectsTitle": "Öne çıkan projeler",
+    "photoOverline": "MOHAMED I CONDE / PROFİL",
+    "photoCaption": "EKONOMİ × ARAŞTIRMA × VERİ",
+    "seoDescription": "Mohamed I CONDE'nin portfolyosu: uluslararası iktisat, ampirik araştırma, ekonometri ve veri bilimi.",
+    "heroMicroItems": [
+      "ULUSLARARASI İKTİSAT",
+      "EKONOMETRİ VE VERİ",
+      "ENERJİ YÖNETİMİ"
+    ],
+    "educationOverline": "EĞİTİM",
+    "researchOverline": "ARAŞTIRMA",
+    "skillsOverline": "YÖNTEMLER",
+    "experienceOverline": "DENEYİM",
+    "latestPostsOverline": "BLOG",
+    "latestProjectsOverline": "PROJELER"
   }
 }

@@ -12,5 +12,12 @@
     "intro": "A selection of work in applied economics, econometrics, data science and machine learning.",
     "allFilterLabel": "All projects",
     "seoDescription": "Research and data science projects by Mohamed I CONDE."
+  },
+  "tr": {
+    "kicker": "ARAŞTIRMA / VERİ / MAKİNE ÖĞRENMESİ",
+    "title": "Projeler",
+    "intro": "Uygulamalı iktisat, ekonometri, veri bilimi ve makine öğrenmesi alanlarındaki çalışmalarımdan bir seçki.",
+    "allFilterLabel": "Tüm projeler",
+    "seoDescription": "Mohamed I CONDE'nin araştırma ve veri bilimi projeleri."
   }
 }

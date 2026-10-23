@@ -12,3 +12,10 @@
 .experience-entry strong { font-weight:650; }
 .experience-entry span { font-size:.9rem; opacity:.78; }
 .experience-entry p { margin:.35rem 0 0; font-size:.95rem; }
+
+/* Three-language switcher (FR / EN / TR) */
+.lang-switcher{display:flex;gap:3px;align-items:center;white-space:nowrap}
+.lang-switcher .lang-choice{padding:8px 9px;font-size:11px}
+.lang-switcher .lang-choice[aria-current="page"]{color:#fff;background:var(--navy);border-color:var(--navy)}
+@media(max-width:1000px){.lang-switcher .lang-choice{padding:7px 6px}.nav-extra{gap:7px}.brand{gap:8px}.nav-container{gap:10px}}
+@media(max-width:420px){.lang-switcher .lang-choice{font-size:10px;padding:6px 5px}}
