@@ -573,6 +573,13 @@ content:
         media: documents
         extensions:
         - pdf
+    - name: cvTr
+      label: Türkçe özgeçmiş PDF
+      type: file
+      options:
+        media: documents
+        extensions:
+        - pdf
     - name: cvEn
       label: English CV PDF
       type: file
