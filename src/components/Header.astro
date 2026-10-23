@@ -1,25 +1,31 @@
 ---
 import site from '../data/site.json';
-import {localized, tr} from '../lib/i18n';
+import {localized, tr, langs} from '../lib/i18n';
 import type {Lang} from '../lib/i18n';
 interface Props {lang:Lang;}
 const {lang} = Astro.props;
 const t=tr(lang);
-const path=Astro.url.pathname;
-const section=path.includes('/blog/')?'blog':path.includes('/projects/')?'projects':'home';
-const switchHref = section==='blog' ? localized(lang==='fr'?'en':'fr','blog/') : section==='projects' ? localized(lang==='fr'?'en':'fr','projects/') : localized(lang==='fr'?'en':'fr');
+const pieces=Astro.url.pathname.split('/').filter(Boolean);
+const section=pieces[1]==='blog'?'blog':pieces[1]==='projects'?'projects':'home';
+const projectSlug=section==='projects' && pieces[2] ? pieces[2] : '';
+// Individual blog posts exist only in their author's language; language links
+// lead to the blog index instead of generating broken translated article URLs.
+const languageLinks=langs.map(code=>({
+  code,
+  href:localized(code,section==='blog'?'blog/':section==='projects'?(projectSlug?`projects/${projectSlug}/`:'projects/'):'')
+}));
 ---
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="header">
   <div class="container nav-container">
-    <a class="brand" href={localized(lang)} aria-label={`${site.displayName} home`}><span class="brand-icon">{site.monogram}<span>.</span></span><span class="brand-copy">{site.brandPrimary} <strong>{site.brandEmphasis}</strong><small>{lang==='fr'?site.brandTagFr:site.brandTagEn}</small></span></a>
+    <a class="brand" href={localized(lang)} aria-label={`${site.displayName} home`}><span class="brand-icon">{site.monogram}<span>.</span></span><span class="brand-copy">{site.brandPrimary} <strong>{site.brandEmphasis}</strong><small>{lang==='fr'?site.brandTagFr:lang==='tr'?site.brandTagTr:site.brandTagEn}</small></span></a>
     <nav class="navigation" id="navigation" aria-label="Main navigation">
       <a href={localized(lang)} aria-current={section==='home'?'page':undefined}>{t.home}</a>
       <a href={localized(lang,'blog/')} aria-current={section==='blog'?'page':undefined}>{t.blog}</a>
       <a href={localized(lang,'projects/')} aria-current={section==='projects'?'page':undefined}>{t.projects}</a>
     </nav>
     <div class="nav-extra">
-      <a class="lang-choice" href={switchHref} lang={lang==='fr'?'en':'fr'} aria-label={lang==='fr'?'Switch to English':'Passer en français'}>{lang==='fr'?'EN':'FR'} <span aria-hidden="true">↗</span></a>
+      <nav class="lang-switcher" aria-label="Language / Langue / Dil">{languageLinks.map(item=><a class="lang-choice" href={item.href} lang={item.code} aria-current={lang===item.code?'page':undefined} aria-label={item.code==='fr'?'Français':item.code==='tr'?'Türkçe':'English'}>{item.code.toUpperCase()}</a>)}</nav>
       <a class="contact-link" href={`mailto:${site.email}`}>{t.contact} <span aria-hidden="true">↗</span></a>
       <button class="nav-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div>

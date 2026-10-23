@@ -6,8 +6,8 @@ import {tags} from '../lib/content';
 interface Props {project: CollectionEntry<'projects'>; lang:Lang;}
 const {project,lang}=Astro.props;
 const t=tr(lang);
-const title=lang==='fr'?project.data.title_fr:project.data.title_en;
-const summary=lang==='fr'?project.data.summary_fr:project.data.summary_en;
+const title=lang==='fr'?project.data.title_fr:lang==='tr'?(project.data.title_tr || project.data.title_en):project.data.title_en;
+const summary=lang==='fr'?project.data.summary_fr:lang==='tr'?(project.data.summary_tr || project.data.summary_en):project.data.summary_en;
 ---
 <article class="project-card" data-project-category={project.data.category}>
   <div class="project-card-top"><span class="category-icon" aria-hidden="true">{project.data.category==='research'?'Σ':project.data.category==='ml'?'✧':project.data.category==='data'?'{}':'▥'}</span><span class="status-tag">{t[project.data.status]}</span></div>

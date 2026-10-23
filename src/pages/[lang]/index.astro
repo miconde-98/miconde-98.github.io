@@ -3,11 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { publicPosts,publicProjects } from '../../lib/content';
-import { tr,localized,withBase, media } from '../../lib/i18n';
+import { tr,localized,withBase, media, langs } from '../../lib/i18n';
 import type {Lang} from '../../lib/i18n';
 import site from '../../data/site.json';
 import homeData from '../../data/home.json';
-export function getStaticPaths(){return [{params:{lang:'fr'}},{params:{lang:'en'}}];}
+export function getStaticPaths(){return langs.map(lang=>({params:{lang}}));}
 const lang=Astro.params.lang as Lang;
 const t=tr(lang);
 const home=homeData[lang];
@@ -21,7 +21,7 @@ const skillItems = safeList(home.skillItems);
 const experienceItems = safeList(home.experienceItems);
 const posts=(await publicPosts()).slice(0,3);
 const projects=(await publicProjects()).filter(p=>p.data.featured).slice(0,3);
-const cv=lang==='fr'?site.cvFr:site.cvEn;
+const cv=lang==='fr'?site.cvFr:lang==='tr'?site.cvTr:site.cvEn;
 const cvLink=cv ? (cv.startsWith('http')?cv:withBase(cv)) : '';
 ---
 <BaseLayout lang={lang} description={home.seoDescription || home.heroIntro}>
@@ -30,7 +30,7 @@ const cvLink=cv ? (cv.startsWith('http')?cv:withBase(cv)) : '';
       {cvLink ? <a href={cvLink} class="button button-primary" download={cvLink.startsWith('http')?undefined:true}>↓ {t.cv}</a> : <span class="button button-disabled" title={t.cvSoon}>↓ {t.cvSoon}</span>}
       <a href={localized(lang,'projects/')} class="button button-outline">{t.explore} ↗</a></div><div class="hero-micro">{heroMicroItems.map(item=><span>{item}</span>)}</div>
     </div>
-    <div class="hero-photo-wrap"><div class="photo-overline">{home.photoOverline}</div><img class="hero-photo" src={media(site.portrait) || withBase('/images/portrait.webp')} alt={lang==='fr'?`Portrait de ${site.displayName}`:`Portrait of ${site.displayName}`} fetchpriority="high"/><div class="photo-caption"><span>{home.photoCaption}</span><span>↗</span></div></div>
+    <div class="hero-photo-wrap"><div class="photo-overline">{home.photoOverline}</div><img class="hero-photo" src={media(site.portrait) || withBase('/images/portrait.webp')} alt={lang==='fr'?`Portrait de ${site.displayName}`:lang==='tr'?`${site.displayName} portresi`:`Portrait of ${site.displayName}`} fetchpriority="high"/><div class="photo-caption"><span>{home.photoCaption}</span><span>↗</span></div></div>
   </div></section>
   <section class="section"><div class="container split-about"><div><p class="overline">01 / {home.aboutTitle.toUpperCase()}</p><h2 class="section-heading">{home.aboutTitle}</h2></div><div><p class="large-para">{home.aboutBody}</p><a class="text-arrow" href={`mailto:${site.email}`}>{t.mail} ↗</a></div></div></section>
   <section class="section section-soft"><div class="container"><div class="section-head"><div><p class="overline">02 / {home.educationOverline}</p><h2 class="section-heading">{home.educationTitle}</h2></div><p class="section-aside">{home.educationIntro}</p></div><div class="edu-grid">
@@ -39,7 +39,7 @@ const cvLink=cv ? (cv.startsWith('http')?cv:withBase(cv)) : '';
   <section class="section"><div class="container interest-grid"><div><p class="overline">03 / {home.researchOverline}</p><h2 class="section-heading">{home.researchTitle}</h2></div><div class="interest-tags">{researchItems.map(item=><span>{item}</span>)}</div></div></section>
   <section class="section section-line"><div class="container"><div class="section-head"><div><p class="overline">04 / {home.skillsOverline}</p><h2 class="section-heading">{home.skillsTitle}</h2></div><p class="section-aside">{home.skillsIntro}</p></div><div class="toolkit">{skillItems.map(item=><span>{item}</span>)}</div></div></section>
   <section class="section section-soft"><div class="container engagement-grid"><div><p class="overline">05 / {home.experienceOverline}</p><h2 class="section-heading">{home.experienceTitle}</h2><p>{home.experienceIntro}</p>
-      {experienceItems.length>0 && <div class="experience-items">{experienceItems.map(item=><div class="experience-entry"><strong>{item.role}</strong><span>{item.organization}{item.period ? ` · ${item.period}` : ''}</span>{item.description && <p>{item.description}</p>}</div>)}</div>}</div><div class="engagement-photo"><img src={media(site.speaking) || withBase('/images/speaking.webp')} alt={lang==='fr'?`Intervention de ${site.displayName} lors d’un événement`:`${site.displayName} speaking at an event`} loading="lazy"/></div></div></section>
+      {experienceItems.length>0 && <div class="experience-items">{experienceItems.map(item=><div class="experience-entry"><strong>{item.role}</strong><span>{item.organization}{item.period ? ` · ${item.period}` : ''}</span>{item.description && <p>{item.description}</p>}</div>)}</div>}</div><div class="engagement-photo"><img src={media(site.speaking) || withBase('/images/speaking.webp')} alt={lang==='fr'?`Intervention de ${site.displayName} lors d’un événement`:lang==='tr'?`${site.displayName} bir etkinlikte konuşma yaparken`:`${site.displayName} speaking at an event`} loading="lazy"/></div></div></section>
   <section class="section"><div class="container"><div class="section-head"><div><p class="overline">06 / {home.latestPostsOverline}</p><h2 class="section-heading">{home.latestPostsTitle}</h2></div><a href={localized(lang,'blog/')} class="text-arrow">{t.viewAll} ↗</a></div>{posts.length ? <div class="cards-grid">{posts.map(p=><PostCard post={p} lang={lang}/>)}</div> : <div class="empty-state">{t.noPosts} <a href={localized(lang,'blog/')}>{t.blog} ↗</a></div>}</div></section>
   <section class="section section-soft"><div class="container"><div class="section-head"><div><p class="overline">07 / {home.latestProjectsOverline}</p><h2 class="section-heading">{home.latestProjectsTitle}</h2></div><a href={localized(lang,'projects/')} class="text-arrow">{t.viewProjects} ↗</a></div>{projects.length ? <div class="cards-grid">{projects.map(p=><ProjectCard project={p} lang={lang}/>)}</div> : <div class="empty-state">{t.noProjects}</div>}</div></section>
 </BaseLayout>

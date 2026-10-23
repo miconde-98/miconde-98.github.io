@@ -7,7 +7,7 @@ const {lang}=Astro.props;
 const t=tr(lang);
 ---
 <footer class="footer"><div class="container footer-grid">
-  <div><a class="footer-mark" href={localized(lang)}>{site.monogram}<span>.</span></a><p>{lang==='fr'?site.footerFr:site.footerEn}</p><small>© {new Date().getFullYear()} {site.displayName}</small></div>
+  <div><a class="footer-mark" href={localized(lang)}>{site.monogram}<span>.</span></a><p>{lang==='fr'?site.footerFr:lang==='tr'?site.footerTr:site.footerEn}</p><small>© {new Date().getFullYear()} {site.displayName}</small></div>
   <div><p class="overline">{t.contact.toUpperCase()}</p><a href={`mailto:${site.email}`}>{site.email} ↗</a><div class="socials">{site.github && <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>}{site.linkedin && <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>}</div></div>
   <div class="footer-last"><p class="overline">{t.legal}</p><a href={localized(lang,'blog/')}>{t.blog}</a><a href={localized(lang,'projects/')}>{t.projects}</a></div>
 </div></footer>
