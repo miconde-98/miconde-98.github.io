@@ -2,10 +2,10 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
 import {publicPosts} from '../../../lib/content';
-import { tr,localized } from '../../../lib/i18n';
+import { tr,localized,langs } from '../../../lib/i18n';
 import type {Lang} from '../../../lib/i18n';
 import blogData from '../../../data/blog-page.json';
-export function getStaticPaths(){return [{params:{lang:'fr'}},{params:{lang:'en'}}];}
+export function getStaticPaths(){return langs.map(lang=>({params:{lang}}));}
 const lang=Astro.params.lang as Lang;
 const t=tr(lang);
 const page=blogData[lang];
@@ -20,7 +20,7 @@ const posts=await publicPosts();
         <option value="all">{t.all}</option>
         {Object.entries(t.groups).map(([v,label])=><option value={v}>{label}</option>)}
       </select>
-      <select id="post-language" aria-label={t.allLangs}><option value="all">{t.allLangs}</option><option value="fr">Français</option><option value="en">English</option></select>
+      <select id="post-language" aria-label={t.allLangs}><option value="all">{t.allLangs}</option><option value="fr">Français</option><option value="en">English</option><option value="tr">Türkçe</option></select>
     </div>
     {posts.length ? <><div class="cards-grid" id="posts-grid">{posts.map(p=><PostCard post={p} lang={lang}/>)}</div><p class="empty-state" id="posts-empty" hidden>{t.noMatches}</p></> : <div class="empty-state">{t.noPosts}</div>}
     <div class="blog-rss">RSS ↗ <a href={localized(lang,'feed.xml')}>{page.rssLabel}</a></div>

@@ -19,7 +19,7 @@ content:
   type: group
   items:
   - name: home_page
-    label: Accueil — contenus bilingues
+    label: Accueil — 3 langues
     type: file
     path: src/data/home.json
     format: json
@@ -270,6 +270,128 @@ content:
       - name: latestProjectsOverline
         label: Repère projets
         type: string
+    - name: tr
+      label: 🇹🇷 Türkçe
+      type: object
+      fields:
+      - name: eyebrow
+        label: Sur-titre / Eyebrow
+        type: string
+      - name: heroTitle
+        label: Titre principal / Hero title
+        type: string
+      - name: heroIntro
+        label: Présentation courte / Hero introduction
+        type: text
+      - name: aboutTitle
+        label: Titre À propos
+        type: string
+      - name: aboutBody
+        label: Texte À propos
+        type: text
+      - name: educationTitle
+        label: Titre Formations
+        type: string
+      - name: educationIntro
+        label: Sous-titre Formations
+        type: text
+      - name: educationItems
+        label: Formations et diplômes (ajouter ou réorganiser)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{degree}'
+        fields:
+        - name: degree
+          label: Formation / Diploma
+          type: string
+        - name: institution
+          label: Université ou établissement
+          type: string
+        - name: details
+          label: Dates et statut
+          type: string
+      - name: researchTitle
+        label: Titre Centres d’intérêt
+        type: string
+      - name: researchItems
+        label: Domaines de recherche (liste)
+        type: string
+        list: true
+      - name: skillsTitle
+        label: Titre Compétences
+        type: string
+      - name: skillsIntro
+        label: Sous-titre Compétences
+        type: text
+      - name: skillItems
+        label: Compétences et méthodes (liste)
+        type: string
+        list: true
+      - name: experienceTitle
+        label: Titre Expériences
+        type: string
+      - name: experienceIntro
+        label: Introduction Expériences
+        type: text
+      - name: experienceItems
+        label: Postes et responsabilités (liste)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{role}'
+        fields:
+        - name: role
+          label: Poste ou fonction
+          type: string
+        - name: organization
+          label: Organisation
+          type: string
+        - name: period
+          label: Période
+          type: string
+        - name: description
+          label: Missions ou réalisations
+          type: text
+      - name: latestPostsTitle
+        label: Titre Dernières publications
+        type: string
+      - name: latestProjectsTitle
+        label: Titre Projets sélectionnés
+        type: string
+      - name: photoOverline
+        label: Légende au-dessus du portrait
+        type: string
+      - name: photoCaption
+        label: Légende sous le portrait
+        type: string
+      - name: seoDescription
+        label: Description Google (SEO)
+        type: text
+      - name: heroMicroItems
+        label: 3 repères sous la présentation
+        type: string
+        list: true
+      - name: educationOverline
+        label: Repère formation
+        type: string
+      - name: researchOverline
+        label: Repère recherche
+        type: string
+      - name: skillsOverline
+        label: Repère compétences
+        type: string
+      - name: experienceOverline
+        label: Repère expériences
+        type: string
+      - name: latestPostsOverline
+        label: Repère blog
+        type: string
+      - name: latestProjectsOverline
+        label: Repère projets
+        type: string
   - name: blog_page
     label: Blog — présentation et SEO
     type: file
@@ -299,6 +421,25 @@ content:
         type: text
     - name: en
       label: 🇬🇧 English
+      type: object
+      fields:
+      - name: kicker
+        label: Sur-titre
+        type: string
+      - name: title
+        label: Titre principal
+        type: string
+      - name: intro
+        label: Texte d’introduction
+        type: text
+      - name: rssLabel
+        label: Libellé du flux RSS
+        type: string
+      - name: seoDescription
+        label: Description Google SEO
+        type: text
+    - name: tr
+      label: 🇹🇷 Türkçe
       type: object
       fields:
       - name: kicker
@@ -362,6 +503,25 @@ content:
       - name: seoDescription
         label: Description Google SEO
         type: text
+    - name: tr
+      label: 🇹🇷 Türkçe
+      type: object
+      fields:
+      - name: kicker
+        label: Sur-titre
+        type: string
+      - name: title
+        label: Titre principal
+        type: string
+      - name: intro
+        label: Texte d’introduction
+        type: text
+      - name: allFilterLabel
+        label: Libellé Tous les projets
+        type: string
+      - name: seoDescription
+        label: Description Google SEO
+        type: text
   - name: identity
     label: Profil, photos, CV et réseaux
     type: file
@@ -382,11 +542,17 @@ content:
     - name: brandTagFr
       label: Sous-titre de navigation français
       type: string
+    - name: brandTagTr
+      label: Gezinme alt başlığı Türkçe
+      type: string
     - name: brandTagEn
       label: Navigation subtitle English
       type: string
     - name: footerFr
       label: Phrase de bas de page - français
+      type: text
+    - name: footerTr
+      label: Alt bilgi açıklaması Türkçe
       type: text
     - name: footerEn
       label: Footer sentence - English
@@ -402,6 +568,13 @@ content:
       type: string
     - name: cvFr
       label: CV français PDF
+      type: file
+      options:
+        media: documents
+        extensions:
+        - pdf
+    - name: cvTr
+      label: Türkçe özgeçmiş PDF
       type: file
       options:
         media: documents
@@ -430,11 +603,17 @@ content:
     - name: metaTitleFr
       label: Titre SEO global français
       type: string
+    - name: metaTitleTr
+      label: Genel SEO başlığı Türkçe
+      type: string
     - name: metaTitleEn
       label: Global SEO title English
       type: string
     - name: metaDescriptionFr
       label: Description générale SEO français
+      type: text
+    - name: metaDescriptionTr
+      label: Genel SEO açıklaması Türkçe
       type: text
     - name: metaDescriptionEn
       label: Global SEO description English
@@ -717,6 +896,141 @@ content:
         - name: visualization
           label: visualization
           type: string
+    - name: tr
+      label: 🇹🇷 Türkçe
+      type: object
+      fields:
+      - name: home
+        label: home
+        type: string
+      - name: blog
+        label: blog
+        type: string
+      - name: projects
+        label: projects
+        type: string
+      - name: contact
+        label: contact
+        type: string
+      - name: cv
+        label: cv
+        type: string
+      - name: cvSoon
+        label: cvSoon
+        type: string
+      - name: explore
+        label: explore
+        type: string
+      - name: viewAll
+        label: viewAll
+        type: string
+      - name: viewProjects
+        label: viewProjects
+        type: string
+      - name: search
+        label: search
+        type: string
+      - name: all
+        label: all
+        type: string
+      - name: allLangs
+        label: allLangs
+        type: string
+      - name: noPosts
+        label: noPosts
+        type: text
+      - name: noMatches
+        label: noMatches
+        type: text
+      - name: noProjects
+        label: noProjects
+        type: text
+      - name: featured
+        label: featured
+        type: string
+      - name: read
+        label: read
+        type: string
+      - name: minutes
+        label: minutes
+        type: string
+      - name: backBlog
+        label: backBlog
+        type: string
+      - name: share
+        label: share
+        type: string
+      - name: copy
+        label: copy
+        type: string
+      - name: copied
+        label: copied
+        type: string
+      - name: source
+        label: source
+        type: string
+      - name: doc
+        label: doc
+        type: string
+      - name: repoSoon
+        label: repoSoon
+        type: string
+      - name: ongoing
+        label: ongoing
+        type: string
+      - name: revision
+        label: revision
+        type: string
+      - name: completed
+        label: completed
+        type: string
+      - name: learnMore
+        label: learnMore
+        type: string
+      - name: mail
+        label: mail
+        type: string
+      - name: legal
+        label: legal
+        type: string
+      - name: articlesLatest
+        label: articlesLatest
+        type: string
+      - name: groups
+        label: Noms des catégories du blog
+        type: object
+        fields:
+        - name: economy
+          label: economy
+          type: string
+        - name: econometrics
+          label: econometrics
+          type: string
+        - name: data
+          label: data
+          type: string
+        - name: energy
+          label: energy
+          type: string
+        - name: research
+          label: research
+          type: string
+      - name: projectGroups
+        label: Noms des catégories de projets
+        type: object
+        fields:
+        - name: research
+          label: research
+          type: string
+        - name: data
+          label: data
+          type: string
+        - name: ml
+          label: ml
+          type: string
+        - name: visualization
+          label: visualization
+          type: string
 - name: editorial
   label: Publications et réalisations
   type: group
@@ -766,6 +1080,8 @@ content:
           label: Français
         - name: en
           label: English
+        - name: tr
+          label: Türkçe
     - name: category
       label: Catégorie
       type: select
@@ -827,6 +1143,9 @@ content:
       label: English title
       type: string
       required: true
+    - name: title_tr
+      label: Türkçe proje başlığı
+      type: string
     - name: summary_fr
       label: Résumé français
       type: text
@@ -835,6 +1154,18 @@ content:
       label: English summary
       type: text
       required: true
+    - name: summary_tr
+      label: Türkçe proje özeti
+      type: text
+    - name: detail_fr
+      label: Description détaillée français
+      type: text
+    - name: detail_en
+      label: Detailed description English
+      type: text
+    - name: detail_tr
+      label: Ayrıntılı açıklama Türkçe
+      type: text
     - name: category
       label: Catégorie
       type: select

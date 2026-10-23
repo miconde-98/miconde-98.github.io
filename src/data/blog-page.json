@@ -2,15 +2,22 @@
   "fr": {
     "kicker": "THE RESEARCH NOTEBOOK / JOURNAL",
     "title": "Blog",
-    "intro": "Analyses économiques, apprentissages techniques et notes de recherche — en français ou en anglais selon le sujet.",
+    "intro": "Analyses économiques, apprentissages techniques et notes de recherche — en français, en anglais ou en turc selon le sujet.",
     "rssLabel": "S’abonner au flux RSS",
     "seoDescription": "Articles d’économie, économétrie, data science et recherche de Mohamed I CONDE."
   },
   "en": {
     "kicker": "THE RESEARCH NOTEBOOK / JOURNAL",
     "title": "Blog",
-    "intro": "Economic analysis, technical learning and research notes — written in French or English depending on the topic.",
+    "intro": "Economic analysis, technical learning and research notes — published in French, English or Turkish depending on the topic.",
     "rssLabel": "Subscribe to RSS feed",
     "seoDescription": "Economics, econometrics, data science and research notes by Mohamed I CONDE."
+  },
+  "tr": {
+    "kicker": "ARAŞTIRMA NOTLARI / BLOG",
+    "title": "Blog",
+    "intro": "Ekonomik analizler, teknik öğrenme notları ve araştırma yazıları — konuya göre Türkçe, Fransızca veya İngilizce.",
+    "rssLabel": "RSS akışına abone ol",
+    "seoDescription": "Mohamed I CONDE'nin ekonomi, ekonometri, veri bilimi ve araştırma yazıları."
   }
 }

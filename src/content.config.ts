@@ -7,7 +7,7 @@ const posts = defineCollection({
     title: z.string().min(1),
     description: z.string().min(1),
     date: z.coerce.date(),
-    language: z.enum(['fr', 'en']),
+    language: z.enum(['fr', 'en', 'tr']),
     category: z.enum(['economy', 'econometrics', 'data', 'energy', 'research']),
     published: z.boolean().default(false),
     featured: z.boolean().default(false),
@@ -19,8 +19,9 @@ const posts = defineCollection({
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
-    title_fr: z.string(), title_en: z.string(),
-    summary_fr: z.string(), summary_en: z.string(),
+    title_fr: z.string(), title_en: z.string(), title_tr: z.string().optional().default(''),
+    summary_fr: z.string(), summary_en: z.string(), summary_tr: z.string().optional().default(''),
+    detail_fr: z.string().optional().default(''), detail_en: z.string().optional().default(''), detail_tr: z.string().optional().default(''),
     category: z.enum(['research', 'data', 'ml', 'visualization']),
     status: z.enum(['ongoing','revision','completed']),
     tools: z.string().optional().default(''),

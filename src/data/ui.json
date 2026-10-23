@@ -30,7 +30,7 @@
     "completed": "Terminé",
     "learnMore": "Voir le projet",
     "mail": "M’écrire",
-    "legal": "Site personnel · FR / EN",
+    "legal": "Site personnel · FR / EN / TR",
     "articlesLatest": "Dernières publications",
     "groups": {
       "economy": "Économie",
@@ -77,7 +77,7 @@
     "completed": "Completed",
     "learnMore": "View project",
     "mail": "Email me",
-    "legal": "Personal portfolio · FR / EN",
+    "legal": "Personal portfolio · FR / EN / TR",
     "articlesLatest": "Latest articles",
     "groups": {
       "economy": "Economics",
@@ -91,6 +91,53 @@
       "data": "Data Science",
       "ml": "Machine Learning",
       "visualization": "Visualization"
+    }
+  },
+  "tr": {
+    "home": "Ana Sayfa",
+    "blog": "Blog",
+    "projects": "Projeler",
+    "contact": "İletişim",
+    "cv": "Özgeçmişimi indir",
+    "cvSoon": "Özgeçmiş yakında eklenecek",
+    "explore": "Projelerimi keşfet",
+    "viewAll": "Tüm yazılar",
+    "viewProjects": "Tüm projeler",
+    "search": "Yazılarda ara...",
+    "all": "Tüm kategoriler",
+    "allLangs": "Tüm diller",
+    "noPosts": "Henüz yayımlanmış yazı bulunmuyor.",
+    "noMatches": "Aramanızla eşleşen yazı bulunamadı.",
+    "noProjects": "Proje sayfaları yakında eklenecek.",
+    "featured": "Öne çıkan",
+    "read": "Yazıyı oku",
+    "minutes": "dk okuma",
+    "backBlog": "Bloga dön",
+    "share": "Paylaş",
+    "copy": "Bağlantıyı kopyala",
+    "copied": "Bağlantı kopyalandı!",
+    "source": "GitHub kaynak kodu",
+    "doc": "Belge",
+    "repoSoon": "GitHub deposu henüz eklenmedi",
+    "ongoing": "Devam ediyor",
+    "revision": "Revizyon aşamasında",
+    "completed": "Tamamlandı",
+    "learnMore": "Projeyi incele",
+    "mail": "E-posta gönder",
+    "legal": "Kişisel portfolyo · FR / EN / TR",
+    "articlesLatest": "Son yayınlar",
+    "groups": {
+      "economy": "Ekonomi",
+      "econometrics": "Ekonometri",
+      "data": "Veri Bilimi / Yapay Zekâ",
+      "energy": "Enerji",
+      "research": "Araştırma"
+    },
+    "projectGroups": {
+      "research": "İktisat araştırmaları",
+      "data": "Veri bilimi",
+      "ml": "Makine öğrenmesi",
+      "visualization": "Veri görselleştirme"
     }
   }
 }

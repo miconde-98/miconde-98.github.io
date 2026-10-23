@@ -1,26 +1,20 @@
-# Administration complète du portfolio — Pages CMS
+# Administration du portfolio en trois langues (FR / EN / TR)
 
-Portail privé de gestion : https://app.pagescms.org (connexion via le compte GitHub autorisé au dépôt `miconde-98.github.io`). Aucune page d'administration n'est exposée dans le menu public.
+Le site est disponible aux adresses `/fr/`, `/en/` et `/tr/`. Le sélecteur de langue permet de naviguer entre les trois versions. La rédaction se fait sur https://app.pagescms.org après authentification GitHub.
 
 ## Pages et présentation
 
-* **Accueil — contenus bilingues** : titres, sous-titres, textes, référencement, études, centres d'intérêt, compétences et expériences. Les listes peuvent être complétées, supprimées ou réordonnées. Les deux langues sont enregistrées séparément. Par défaut, la liste d'expériences est vide jusqu'à confirmation des intitulés et dates ; le paragraphe de présentation reste visible.
-* **Blog — présentation et SEO** : titre, accroche, texte introductif, RSS et méta-description en français et anglais.
-* **Projets — présentation et SEO** : titre, accroche, texte introductif, filtre de catégorie et méta-description bilingues.
-* **Profil, photos, CV et réseaux** : nom public, monogramme, identité du menu, phrases du pied de page, photographies, CV PDF, email, liens GitHub et LinkedIn, métadonnées globales.
-* **Menus, boutons et traductions** : navigation, libellés, messages vides, mots des catégories et statuts. Modifier uniquement les libellés, pas les clés techniques (economy, research, etc.).
+- **Accueil — 3 langues** : les blocs Français, English et Türkçe sont indépendants dans `src/data/home.json` ; les formations, domaines, compétences et expériences se modifient dans chaque langue.
+- **Blog — présentation et SEO** : titres, introductions, descriptions SEO et RSS dans les trois langues.
+- **Projets — présentation et SEO** : mêmes champs en FR, EN et TR.
+- **Profil, photos, CV et réseaux** : trois descriptions globales, mentions de navigation et pieds de page, ainsi que les champs PDF pour les trois langues (un CV peut être laissé vide).
+- **Menus, boutons et traductions** : textes d'interface et noms de catégories en FR, EN et TR.
 
-## Publications et réalisations
+## Publications et projets
 
-* **Articles du blog** : créer et modifier les articles Markdown. Le champ `Rendre public` détermine la présence de l'article dans le site ; le contenu des brouillons est tout de même visible dans le dépôt GitHub public.
-* **Projets** : créer et modifier des fiches de recherche et data science. Le lien GitHub est optionnel ; une fiche peut rester en brouillon.
+- **Articles du blog** : le champ Langue peut être français, anglais ou turc. Chaque article est écrit dans UNE langue et n'est pas traduit automatiquement. Le blog de chaque langue liste tous les articles et fournit un filtre FR / EN / TR. Cliquer sur un article mène à son URL d'origine. Si l'on change de langue depuis un article, le lien mène à l'index du blog afin d'éviter les fausses traductions.
+- **Projets** : pour chaque fiche, renseigner titres et résumés français, anglais et turcs ; les champs turcs facultatifs restent compatibles avec les fiches plus anciennes. Les trois URL de fiche utilisent le bon titre et résumé. Les détails linguistiques facultatifs prennent priorité sur l'ancien texte partagé.
 
-## CV et photographies
+## Fonctionnement
 
-Le média **CV et documents PDF** enregistre les fichiers dans `public/docs/` et fournit un lien de type `/docs/nom.pdf`. Le média **Images** enregistre dans `public/images/` ; les photos déjà en ligne sont conservées, sauf si vous les remplacez. Le bouton CV apparaît lorsque le fichier a été sélectionné.
-
-## Publication et sécurité
-
-Chaque enregistrement Pages CMS crée un commit sur `main` et déclenche GitHub Actions. La publication peut prendre quelques minutes. En cas d'échec de build, ouvrir l'onglet Actions du dépôt GitHub pour obtenir l'erreur avant de modifier le site. Les accès à Pages CMS dépendent des autorisations GitHub du dépôt ; le fait de masquer le lien d'administration n'est pas la mesure de sécurité.
-
-> Important : les champs bilingues de chaque page sont indépendants. Une modification en français ne traduit pas automatiquement la version anglaise. Toute page publique conserve sa présentation graphique prédéfinie ; les textes, listes, images et contenus éditoriaux sont administrables.
+Enregistrer dans Pages CMS déclenche une compilation sur GitHub Actions. Si elle échoue, consulter l'onglet Actions du dépôt. Les textes français et anglais déjà enregistrés restent en place. Les brouillons non publiés restent accessibles dans le dépôt GitHub public et ne doivent pas contenir d'informations confidentielles.
